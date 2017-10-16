@@ -1,0 +1,42 @@
+Jacob Territo
+Guess Outline
+
+*DATABASE
+   -Each line represents a node, all are stored in preorder (Root, Left, Right).
+   -Just a 0 or 1 distinguising internal and external nodes followed by string.
+
+*Node
+   -contains a pointer to left and right as well as text
+
+*main
+   -Prompts for intial guess if db is empty.
+   -Navigate binary search tree by asking question of current node and moving on based off user input.
+   -Accept user input and determine whether it is yes/no based off first char.
+    Test: System test echoing user input.
+
+//TREE FUNCTIONS//
+*guess(node* root)
+   -recusiveley traverses tree based off user input.
+   -adds new nodes if neccesary
+*makeNode()
+   -Creates a node with text.
+   
+*add(node* original)
+   -Prompt for correct answer, another question, and answers to that question.
+   -Store responses to new node (using realloc() to store whole string) and insert it into tree.
+    Test: Unit tests running on simple linked list.
+
+*createList(node* root,char* fileName)
+ -Recursiveley create each node by navigating in preorder, translating from text into struct.
+ -All parents have two children, making traversal much easier.
+    Test: Unit tests, run on simple file and navigate, checking output.
+
+*writeDB(node* root, char* fileName)
+   -Recursiveley traverse tree in preorder, freeing nodes as it goes.
+   -Translating from struct to text by writing 0(internal) or 1(external) and text.
+    Test: Unit tests, comparing with expected output.
+
+//HELPER FUNCTIONS//
+*readLine(FILE* file)
+*yesNo(FILE* file)
+ -determines whether response from user is yes or no.
