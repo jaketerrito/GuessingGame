@@ -1,14 +1,13 @@
 #!/bin/bash
 
-\rm qa.db
 
 for file in $( ls testFiles/* ); do
    echo -n "Testing with ${file} -- "
-
+   \rm ../qa.db
    BASE=`basename ${file} .txt`
 
    # program testing
-   ./guess < ${file} > gout/${BASE}.out 
+   ./../guess < ${file} > gout/${BASE}.out 
    diff expected/${BASE}.db qa.db
    diff -w expected/${BASE}.out gout/${BASE}.out
    if [ $? -eq 0 ]; then

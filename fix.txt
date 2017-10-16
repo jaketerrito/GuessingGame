@@ -1,3 +1,0 @@
-ctrl d... just handle the null character being input. 
-handle emptyline better
-check FORMaTINGIGNIGGN
