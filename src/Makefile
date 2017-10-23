@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -ansi -pedantic -g
-MAIN = guess
+MAIN = ../guess
 OBJS = guess.c  treeFuncs.c helper.c 
 all:$(MAIN)
 

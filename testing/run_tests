@@ -6,6 +6,12 @@ for file in $( ls testFiles/* ); do
    \rm ../qa.db
    BASE=`basename ${file} .txt`
 
+
+   (../src; make)
+   gcc  -Wall -ansi -pedantic -g tests.c ../src/treeFuncs.c ../src/helper.c
+   ./a.out
+   rm a.out
+
    # program testing
    ./../guess < ${file} > gout/${BASE}.out 
    diff expected/${BASE}.db qa.db

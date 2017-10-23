@@ -6,6 +6,9 @@
 
 #include "helper.h"
 
+/*
+ * Returns the input string of variable size.
+ */
 char* readLine(FILE* file)
 {
    static int SIZE = 32;
@@ -40,6 +43,9 @@ char* readLine(FILE* file)
    return string;
 }
 
+/*
+ * Gets the user's answer, yes or no.
+ */
 int yesNo()
 {
    char* string = readLine(stdin);

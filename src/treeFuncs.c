@@ -20,31 +20,35 @@ node* makeNode()
    return guard;
 }
 
+/*
+ * Traverses the tree based off user input. 
+ */
 void guess(node* root)
 {
    int temp;
-   if(root->left == NULL){
+   if(root->left == NULL){ /* if it is an outer node(leaf) in the tree */
       printf("Is it %s? ",root->txt);
       temp = yesNo();
-      while(temp == 2){
+      while(temp == 2){ /* invalid response */
          printf("An empty response is not acceptable.  Please answer again.");
          printf("\nIs it %s? ",root->txt);
          temp = yesNo();
       }
-      if(temp == 1){
+      if(temp == 1){ /* guess was correct */
          printf("\nMy, am I clever. :)\nThanks for playing.\n\n");
          return;
       }
-      addGuess(root);
+      addGuess(root); /* guess was incorrect */
       return;
-   }else{
+   }else{ /* if it is an inner node */
       printf("%s ",root->txt);
       temp = yesNo();
-      while(temp == 2){
+      while(temp == 2){ /* invalid response */
          printf("An empty response is not acceptable.  Please answer again.");
          printf("\n%s ",root->txt);
          temp = yesNo();
       }
+      /* goes left or right based off answer to question */
       if(temp == 1){
          guess(root->left);
          return;
@@ -54,6 +58,9 @@ void guess(node* root)
    }
 }
 
+/*
+ * gets new item to guess with a distinguishing question
+ */
 void addGuess(node* original)
 {
    int temp;
@@ -108,6 +115,9 @@ void addGuess(node* original)
    printf("\nI'll get it next time, I'm sure.\nThanks for playing.\n\n");
 }
 
+/*
+ * confirms that database has valid amount of arguments
+ */
 void dbCheck(FILE *f,node* root)
 {
    int count = 0;
@@ -127,6 +137,9 @@ void dbCheck(FILE *f,node* root)
    rewind(f);
 }
 
+/*
+ * generates tree from file
+ */
 int createList(node* root,FILE *f)
 {
    int ret = 1;
@@ -153,6 +166,9 @@ int createList(node* root,FILE *f)
    return ret;
 }
 
+/*
+ * generates database from tree
+ */
 void writeDB(node* root, FILE *f)
 { 
    if(root->left == NULL){
