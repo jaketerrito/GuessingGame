@@ -1,21 +1,20 @@
 #!/bin/bash
 
+###running tests.c (currently missing)
+#make -C ../src
+#gcc  -Wall -ansi -pedantic -g tests.c ../src/treeFuncs.c ../src/helper.c
+#./a.out
+#rm a.out
 
-for file in $( ls testFiles/* ); do
+for file in $( ls inputFiles/* ); do
    echo -n "Testing with ${file} -- "
-   \rm ../qa.db
+   \rm qa.db
    BASE=`basename ${file} .txt`
 
-
-   (../src; make)
-   gcc  -Wall -ansi -pedantic -g tests.c ../src/treeFuncs.c ../src/helper.c
-   ./a.out
-   rm a.out
-
    # program testing
-   ./../guess < ${file} > gout/${BASE}.out 
+   ./../guess < ${file} > guessOutput/${BASE}.out 
    diff expected/${BASE}.db qa.db
-   diff -w expected/${BASE}.out gout/${BASE}.out
+   diff -w expected/${BASE}.out guessOutput/${BASE}.out
    if [ $? -eq 0 ]; then
       echo "Succeeded"
    else

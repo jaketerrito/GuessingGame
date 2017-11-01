@@ -7,7 +7,8 @@
 
 int main(void){
    node* root;
-   FILE *f = fopen("qa.db","r");
+   FILE *f = fopen("qa.db","r"); /* The database that the game runs from */
+
    if(f == NULL){ /* If the given database doesn't exist or is empty it starts from scratch with a single item */
       root = makeNode();
       printf("qa.db: No such file or directory\nUnable to read database qa.db. Starting fresh.\n\nWhat is it (with article)? ");
@@ -24,7 +25,7 @@ int main(void){
             exit(-1);
          }
       } 
-   }else{
+   }else{ /* If the database exists, it starts the game from that file. */
       root = makeNode();
       if(!createList(root,f)){ /* if database is corrupts it exits, allowing user to attempt to fix database */
          freeNodes(root);
